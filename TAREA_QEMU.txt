@@ -1,0 +1,76 @@
+﻿Tarea 1 Automatizacion y QEMU
+Juan Manuel Beltran
+Angie Taiana Ruiz Ruiz 
+Kevin Andres Leon Tarapues 
+
+Virtualizacion con QUEMU
+Proceso Metodologico
+
+Procedemos con la instalacion de git y asociar nuestra cuenta
+Puntos a tener en cuenta 
+    • user.name: kaleon74
+    • user. Name.Email: kevinleon2001@hotmail.com
+
+Comandos necesarios
+    • git config –global user.name “kaleon74”
+    • git config –global user.name.email “kevinleon2001@hotmail.com”
+
+
+
+Crear una carpeta en el local que se enlazara con el repositorio en GitHub e inicializar el git.
+ 
+Comandos necesarios
+    • mkdir QEMU
+    • git init
+
+Clonar el repostorio para realizar el enlace 
+
+Comandos necesarios
+    • git clone https://github.com/kaleon74/Automatizacion_Tarea2.git
+
+
+Validar disponibilidad de virtualizacion 
+Comandos necesarios
+    • sudo apt install cpu-checker
+    • vmk-pk
+    • egrep -c ‘(vmx|svm)’ /proc/cpuinfo
+      
+Instalar QUEMU
+Comandos necesarios
+    • sudo apt update
+    • sudo apt install qemu-kmv virt-manager virtinst libvirt-clients bridge-utils libvirt-daemon-sytem
+
+ Despliegue de maquina virtual
+    • virt-manager –> Creacion de maquina virtual por entorno grafico.
+
+Despliegue ISO Windows 10
+
+Comandos
+Creacion del disco virtual
+    • qemu-img create -f qcow2 ~/Descargas/Windows10.qcow2 30G
+
+Instalacion de SO Windows 10
+    • Sudo qemu-system-x86_64 \
+      -m 2048 \
+      -smp 2 \
+      -drive file=~/Descargas/Windows10.qcow2,format=qcow2 \
+      -cdrom ~/Descargas/Windows10.iso \
+      -enable-kvm \
+      - device VGA \
+      -net nic -net user \
+      -usb -device usb-tablet
+      
+Aclaraciones a tener en cuenta
+    • -m → comando que asigna la Ram del SO
+    • -smp → Nulceos asignados de la CPU
+    • hda → disco virtual de arranque
+    • cdrom → Monta la ISO del SO
+    • device VGA →Tarjeta Grafica Virtual
+    • net nic -net user → Red basica  
+
+Despliegue ISO CentOS 
+file 
+git status 
+git commit 
+git add. 
+Git push 
